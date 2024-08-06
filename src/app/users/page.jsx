@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const User = ({ params }) => {
@@ -57,19 +58,23 @@ const User = ({ params }) => {
         <button onClick={handleprev}>prev page</button>
         <button onClick={handleNext}>next page</button>
       </div>
-      {data.map((user, idx) => (
-        <div key={idx} className="mb-5">
-          <h1>{user.first_name}</h1>
-          <Image
-            src={user.avatar}
-            alt={user.first_name}
-            sizes="100"
-            width={400}
-            height={400}
-            style={{ sizes: "80" }}
-          />
-        </div>
-      ))}
+      <div className="flex gap-5 ">
+        {data.map((user, idx) => (
+          <div key={idx} className="mb-5">
+            <h1>{user.first_name}</h1>
+            <Image
+              src={user.avatar}
+              alt={user.first_name}
+              // sizes="100"
+              width={200}
+              height={200}
+            />
+            <Link href={`/users/${user.id}`} className="text-sm">
+              Details User
+            </Link>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
